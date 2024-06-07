@@ -1,4 +1,6 @@
-"""Item model for the project."""
+"""
+Item models for the project.
+"""
 
 import scrapy
 

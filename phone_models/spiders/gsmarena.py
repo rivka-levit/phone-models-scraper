@@ -1,3 +1,7 @@
+"""
+Spider for gsmarena site. Extracts all phone models from the site.
+"""
+
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.loader import ItemLoader
@@ -5,9 +9,9 @@ from scrapy.loader import ItemLoader
 from phone_models.items import PhoneModelItem
 
 
-class GsmarenaSpider(CrawlSpider):
-    name = "gsmarena"
-    allowed_domains = ["gsmarena.com"]
+class GsmarenaSpider(CrawlSpider):  # noqa
+    name = "gsmarena"  # noqa
+    allowed_domains = ["gsmarena.com"]  # noqa
     start_urls = ["https://www.gsmarena.com/makers.php3"]
     rules = (
         Rule(
@@ -30,7 +34,7 @@ class GsmarenaSpider(CrawlSpider):
         )
         item.add_xpath(
             'title',
-            './/div[@class="specs-phone-name-title"]/text()'
+            './/h1[@class="specs-phone-name-title"]/text()'
         )
         item.add_xpath(
             'announced',
