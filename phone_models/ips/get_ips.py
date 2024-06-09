@@ -1,8 +1,11 @@
 import json
+import requests
 
-with open('Free_Proxy_List.json', 'r') as file:
-    data = json.load(file)
+r = requests.get('https://proxylist.geonode.com/api/proxy-list?limit=500&page='
+                 '1&sort_by=lastChecked&sort_type=desc')
 
-    with open('proxies.txt', 'w+') as pf:
-        for i in data:
-            pf.write(i['ip'] + '\n')
+data = json.loads(r.text)
+
+with open('proxies.txt', 'w+') as pf:
+    for i in data['data']:
+        pf.write(i['ip'] + '\n')
